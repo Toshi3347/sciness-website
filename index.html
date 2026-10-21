@@ -346,7 +346,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid #ffffff;outline-offset
   var s=document.getElementById('form-status'),b=document.getElementById('form-submit');
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    if(f.action.indexOf('xrpewyld')>-1){s.textContent="送信できませんでした。時間をおいて再度お試しいただくか、メールにてご連絡ください。";return;}
+    if(f.action.indexOf('YOUR_FORM_ID')>-1){s.textContent="送信できませんでした。時間をおいて再度お試しいただくか、メールにてご連絡ください。";return;}
     b.disabled=true;s.textContent="送信しています…";
     fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
       .then(function(r){if(!r.ok)throw new Error(r.status);f.reset();s.textContent="お問い合わせを受け付けました。内容を確認のうえ、ご連絡いたします。";})
