@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>Sciness, LLC.</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff}
+html{scroll-behavior:smooth}
+a{color:#14284b}a:hover{color:#3a5a8c}
+input,select,textarea,button{font:inherit}
+input:focus,select:focus,textarea:focus{outline:2px solid #ffffff;outline-offset:2px}
+</style>
+</helmet>
+<div style="font-family: 'Inter', 'Noto Sans JP', sans-serif; color: #111111; background: #ffffff; line-height: 1.8; font-size: 16px">
+
+<!-- Header -->
+<header style="background: {{accent}}">
+<div style="max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px">
+<a href="#top" onClick="{{goTop}}" style="text-decoration: none; font-size: 18px; font-weight: 600; letter-spacing: 0.06em; color: #ffffff; min-height: 44px; display: inline-flex; align-items: center">SCINESS, LLC.</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px">
+<nav aria-label="{{t.navLabel}}" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; font-size: 14px">
+<sc-for list="{{nav}}" as="item" hint-placeholder-count="4">
+<a href="{{item.href}}" onClick="{{item.go}}" style="text-decoration: none; color: #e8edf5; min-height: 44px; display: inline-flex; align-items: center">{{item.label}}</a>
+</sc-for>
+</nav>
+<a href="#contact" onClick="{{goContact}}" style="text-decoration: none; background: #ffffff; color: {{accent}}; padding: 10px 20px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; font-size: 14px; font-weight: 500">{{t.contactBtn}}</a>
+<div role="group" aria-label="Language" style="display: flex; align-items: center; border: 1px solid #4a5f84; font-size: 13px; font-weight: 500; letter-spacing: 0.06em">
+<sc-if value="{{isJa}}" hint-placeholder-val="{{ true }}">
+<button type="button" aria-pressed="true" style="background: #ffffff; color: {{accent}}; border: none; padding: 0 12px; min-width: 44px; min-height: 44px; cursor: pointer">JP</button>
+<button type="button" aria-pressed="false" onClick="{{setEn}}" style="background: transparent; color: #c3cddd; border: none; padding: 0 12px; min-width: 44px; min-height: 44px; cursor: pointer">EN</button>
+</sc-if>
+<sc-if value="{{isEn}}" hint-placeholder-val="{{ false }}">
+<button type="button" aria-pressed="false" onClick="{{setJa}}" style="background: transparent; color: #c3cddd; border: none; padding: 0 12px; min-width: 44px; min-height: 44px; cursor: pointer">JP</button>
+<button type="button" aria-pressed="true" style="background: #ffffff; color: {{accent}}; border: none; padding: 0 12px; min-width: 44px; min-height: 44px; cursor: pointer">EN</button>
+</sc-if>
+</div>
+</div>
+</div>
+</header>
+
+<!-- Hero -->
+<section id="top" style="background: {{accent}}; color: #ffffff">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(40px, 8vw, 120px) 24px clamp(64px, 8vw, 104px); box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; font-size: 12px; letter-spacing: 0.24em; color: #b4c0d3; border-bottom: 1px solid #3a4e72; padding-bottom: 16px; margin-bottom: clamp(32px, 6vw, 72px)">
+<span>SCIENCE × BUSINESS</span>
+<span>HEALTHCARE / LIFE SCIENCES</span>
+</div>
+<p style="margin: 0 0 8px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: clamp(48px, 10vw, 144px); line-height: 1; letter-spacing: -0.045em">Science,</p>
+<p style="margin: 0 0 clamp(32px, 5vw, 56px); font-family: 'Inter', sans-serif; font-weight: 500; font-size: clamp(48px, 10vw, 144px); line-height: 1; letter-spacing: -0.045em; color: #8b9cb8">into business.</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 32px 40px">
+<div style="flex: 1 1 420px; max-width: 660px">
+<sc-if value="{{hasHeroTitle}}" hint-placeholder-val="{{ true }}">
+<h1 style="margin: 0 0 20px; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 32px); line-height: 1.5">{{t.heroTitle}}</h1>
+</sc-if>
+<p style="margin: 0; font-size: 16px; color: #d2dae6">{{t.heroLead}}</p>
+</div>
+<a href="#contact" onClick="{{goContact}}" style="text-decoration: none; background: #ffffff; color: {{accent}}; padding: 16px 32px; font-size: 15px; font-weight: 500; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center; gap: 12px">{{t.heroCta}}<span aria-hidden="true">→</span></a>
+</div>
+</div>
+</section>
+
+<!-- Service -->
+<section id="service" style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) 24px clamp(64px, 9vw, 112px); box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 56px">
+<div>
+<p style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.24em; color: {{accent}}; font-weight: 500">SERVICE</p>
+<h2 style="margin: 0; font-family: 'Noto Sans JP', sans-serif; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.4">{{t.serviceTitle}}</h2>
+</div>
+<p style="margin: 0; max-width: 460px; font-size: 15px; color: #3d3d3d">{{t.serviceLead}}</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; border-top: 2px solid {{accent}}">
+<sc-for list="{{t.services}}" as="s" hint-placeholder-count="3">
+<article style="flex: 1 1 320px; padding: 40px 32px 40px 0; box-sizing: border-box">
+<p style="margin: 0 0 24px; font-size: 14px; font-weight: 500; color: {{accent}}">{{s.no}}</p>
+<h3 style="margin: 0 0 16px; font-family: 'Noto Sans JP', sans-serif; font-size: 22px; font-weight: 700; line-height: 1.5; white-space: pre-line">{{s.title}}</h3>
+<ul style="margin: 0; padding: 0; list-style: none; font-size: 15px; color: #3d3d3d; display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{s.items}}" as="li" hint-placeholder-count="3">
+<li>— {{li}}</li>
+</sc-for>
+</ul>
+</article>
+</sc-for>
+</div>
+</section>
+
+<!-- Works -->
+<section id="works" style="background: #f3f5f8">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) 24px; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 48px">
+<div>
+<p style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.24em; color: {{accent}}; font-weight: 500">WORKS</p>
+<h2 style="margin: 0; font-family: 'Noto Sans JP', sans-serif; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.4">{{t.worksTitle}}</h2>
+</div>
+<p style="margin: 0; max-width: 460px; font-size: 14px; color: #4d4d4d">{{t.worksNote}}</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 440px; background: #ffffff; padding: clamp(28px, 4vw, 40px); box-sizing: border-box">
+<p style="margin: 0 0 8px; font-size: 13px; letter-spacing: 0.16em; color: {{accent}}; font-weight: 500">BIOTECH VENTURES</p>
+<h3 style="margin: 0 0 20px; font-family: 'Noto Sans JP', sans-serif; font-size: 22px; font-weight: 700">{{t.ventureTitle}}</h3>
+<p style="margin: 0 0 20px; font-size: 14px; color: #3d3d3d">{{t.ventureLead}}</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{t.tags}}" as="tag" hint-placeholder-count="9">
+<span style="font-size: 13px; border: 1px solid #c9d1de; padding: 6px 12px">{{tag}}</span>
+</sc-for>
+</div>
+</div>
+<div style="flex: 1 1 440px; background: #ffffff; padding: clamp(28px, 4vw, 40px); box-sizing: border-box">
+<p style="margin: 0 0 8px; font-size: 13px; letter-spacing: 0.16em; color: {{accent}}; font-weight: 500">CORPORATE &amp; ACADEMIA</p>
+<h3 style="margin: 0 0 20px; font-family: 'Noto Sans JP', sans-serif; font-size: 22px; font-weight: 700">{{t.corpTitle}}</h3>
+<ul style="margin: 0; padding: 0; list-style: none; font-size: 14px; display: flex; flex-direction: column; border-top: 1px solid #e0e4ea">
+<sc-for list="{{t.projects}}" as="p" hint-placeholder-count="7">
+<li style="padding: 12px 0; border-bottom: 1px solid #e0e4ea; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px"><span>{{p.t}}</span><span style="color: #595959">{{p.c}}</span></li>
+</sc-for>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CEO -->
+<section id="ceo" style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) 24px; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; gap: 48px 64px">
+<div style="flex: 1 1 360px">
+<p style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.24em; color: {{accent}}; font-weight: 500">CEO</p>
+<h2 style="margin: 0 0 40px; font-family: 'Noto Sans JP', sans-serif; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.4">{{t.ceoTitle}}</h2>
+<img src="/_blob/5e2e958f882dcd8f1b9b3d6b17b2dae7" alt="{{t.ceoAlt}}" style="width: 100%; max-width: 380px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 0%; display: block; background: #eef1f5">
+</div>
+<div style="flex: 999 1 520px; min-width: 0; padding-top: 4px">
+<p style="margin: 0 0 4px; font-size: 14px; letter-spacing: 0.08em; color: #595959">{{t.ceoSub}}</p>
+<p style="margin: 0 0 32px; font-family: 'Noto Sans JP', sans-serif; font-size: 32px; font-weight: 700">{{t.ceoName}}</p>
+<p style="margin: 0 0 20px; font-size: 15px; color: #3d3d3d; max-width: 660px">{{t.ceoBio1}}</p>
+<p style="margin: 0 0 48px; font-size: 15px; color: #3d3d3d; max-width: 660px">{{t.ceoBio2}}</p>
+<dl style="margin: 0; font-size: 14px; border-top: 2px solid {{accent}}">
+<sc-for list="{{t.timeline}}" as="r" hint-placeholder-count="7">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 32px; padding: 16px 0; border-bottom: 1px solid #e6e6e6"><dt style="flex: 0 0 96px; color: {{accent}}; font-weight: 500">{{r.y}}</dt><dd style="margin: 0; flex: 1 1 280px; white-space: pre-line">{{r.text}}</dd></div>
+</sc-for>
+</dl>
+</div>
+</div>
+</section>
+
+<!-- Numbers -->
+<section aria-label="{{t.numbersLabel}}" style="background: #f3f5f8">
+<div style="max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap">
+<sc-for list="{{t.numbers}}" as="n" hint-placeholder-count="3">
+<div style="flex: 1 1 260px; padding: 48px 32px 48px 0; box-sizing: border-box">
+<p style="margin: 0; font-family: 'Inter', sans-serif; font-size: 56px; font-weight: 500; letter-spacing: -0.03em; line-height: 1.1; color: {{accent}}">{{n.num}}<span style="font-size: 22px; margin-left: 6px; letter-spacing: 0">{{n.unit}}</span></p>
+<p style="margin: 12px 0 0; font-size: 14px; color: #4d4d4d">{{n.text}}</p>
+</div>
+</sc-for>
+</div>
+</section>
+
+<!-- Company -->
+<section id="company">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 9vw, 112px) 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 64px">
+<div style="flex: 1 1 320px">
+<p style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.24em; color: {{accent}}; font-weight: 500">COMPANY</p>
+<h2 style="margin: 0; font-family: 'Noto Sans JP', sans-serif; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.4">{{t.companyTitle}}</h2>
+</div>
+<dl style="flex: 999 1 520px; min-width: 0; margin: 0; font-size: 15px; border-top: 2px solid {{accent}}">
+<sc-for list="{{t.company}}" as="c" hint-placeholder-count="5">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 32px; padding: 20px 0; border-bottom: 1px solid #e6e6e6"><dt style="flex: 0 0 120px; color: #595959">{{c.k}}</dt><dd style="margin: 0; flex: 1 1 280px">{{c.v}}</dd></div>
+</sc-for>
+</dl>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact" style="background: {{accent}}; color: #ffffff; scroll-margin-top: 0">
+<div style="max-width: 1200px; margin: 0 auto; padding: clamp(72px, 10vw, 128px) 24px; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 48px 64px">
+<div style="flex: 1 1 360px">
+<p style="margin: 0 0 12px; font-size: 13px; letter-spacing: 0.24em; color: #b4c0d3">CONTACT</p>
+<h2 style="margin: 0 0 24px; font-family: 'Noto Sans JP', sans-serif; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.4; white-space: pre-line">{{t.contactTitle}}</h2>
+<p style="margin: 0; font-size: 15px; color: #d2dae6; max-width: 420px">{{t.contactLead}}</p>
+</div>
+<form style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
+<label for="f-name" style="font-size: 13px; color: #d2dae6">{{t.fName}}</label>
+<input id="f-name" type="text" required="" style="background: transparent; border: none; border-bottom: 1px solid #7f8fab; color: #ffffff; padding: 12px 0; font-size: 16px; min-height: 44px; box-sizing: border-box">
+</div>
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
+<label for="f-org" style="font-size: 13px; color: #d2dae6">{{t.fOrg}}</label>
+<input id="f-org" type="text" style="background: transparent; border: none; border-bottom: 1px solid #7f8fab; color: #ffffff; padding: 12px 0; font-size: 16px; min-height: 44px; box-sizing: border-box">
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 24px">
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
+<label for="f-mail" style="font-size: 13px; color: #d2dae6">{{t.fMail}}</label>
+<input id="f-mail" type="email" required="" style="background: transparent; border: none; border-bottom: 1px solid #7f8fab; color: #ffffff; padding: 12px 0; font-size: 16px; min-height: 44px; box-sizing: border-box">
+</div>
+<div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
+<label for="f-type" style="font-size: 13px; color: #d2dae6">{{t.fType}}</label>
+<select id="f-type" style="background: {{accent}}; border: none; border-bottom: 1px solid #7f8fab; color: #ffffff; padding: 12px 0; font-size: 16px; min-height: 44px; box-sizing: border-box">
+<sc-for list="{{t.options}}" as="o" hint-placeholder-count="5">
+<option>{{o}}</option>
+</sc-for>
+</select>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="f-body" style="font-size: 13px; color: #d2dae6">{{t.fBody}}</label>
+<textarea id="f-body" rows="5" style="background: transparent; border: 1px solid #7f8fab; color: #ffffff; padding: 14px; font-size: 16px; resize: vertical; box-sizing: border-box"></textarea>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<p style="margin: 0; font-size: 12px; color: #b4c0d3">{{t.privacy}}</p>
+<button type="submit" style="background: #ffffff; color: {{accent}}; border: none; padding: 16px 40px; font-size: 15px; font-weight: 500; min-height: 44px; cursor: pointer; display: inline-flex; align-items: center; gap: 12px">{{t.submit}}<span aria-hidden="true">→</span></button>
+</div>
+</form>
+</div>
+</section>
+
+<!-- Footer -->
+<footer style="background: {{accent}}; color: #b4c0d3; border-top: 1px solid #3a4e72">
+<div style="max-width: 1200px; margin: 0 auto; padding: 32px 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 13px">
+<span style="color: #ffffff; font-weight: 600; letter-spacing: 0.06em">SCINESS, LLC.</span>
+<span>© Sciness, LLC. All rights reserved.</span>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#14284b","options":["#14284b","#0f1e36","#111111"]},"lang":{"editor":"enum","options":["auto","ja","en"],"default":"auto"},"$preview":{"width":1440,"height":5500}}'>
+const COPY = {
+  ja: {
+    navLabel: 'メインメニュー',
+    nav: ['事業内容', '実績', '代表', '会社概要'],
+    contactBtn: 'お問い合わせ',
+    heroTitle: 'サイエンス「を」ビジネスに',
+    heroLead: '優れた研究や技術が、事業として持続可能な形で社会に実装されるように。サイネスは、ヘルスケア・ライフサイエンス領域の新規事業プロデュースと、創薬・バイオベンチャーの事業計画、資金調達、アライアンスを支援します。',
+    heroCta: 'お問い合わせ・ご相談',
+    numbersLabel: '実績の数字',
+    numbers: [
+      { num: '18', unit: '年', text: '製薬・コンサルティング・ベンチャー経営を通じたライフサイエンス領域での経験' },
+      { num: '8', unit: '億円+', text: 'スタートアップの取締役として主導した資金調達額' },
+      { num: '3', unit: '社', text: '取締役・CxOとして経営に参画したライフサイエンス企業' }
+    ],
+    serviceTitle: '事業内容',
+    serviceLead: 'シーズの発掘から創業、資金調達、事業提携まで。製薬企業・コンサルティングファーム・ベンチャー経営の経験をもとに、事業化のどの段階からでもご一緒します。',
+    services: [
+      { no: '01', title: '創薬・バイオベンチャーの\n事業化・資金調達支援', items: ['事業計画・資本政策の策定', 'VC/CVCとの資金調達交渉', '製薬企業とのアライアンス・ライセンス交渉'] },
+      { no: '02', title: 'ヘルスケア新規事業の\n企画・戦略立案', items: ['新規事業の企画・参入戦略', '中期経営計画の策定', 'サービス実証・事業開発の実行支援'] },
+      { no: '03', title: 'アカデミア発シーズの\n育成・創業', items: ['ギャップファンド申請の支援', '大学発ベンチャーの設立・経営参画', '産学連携の企画・推進'] }
+    ],
+    worksTitle: '主な支援実績',
+    worksNote: '守秘義務に基づき、支援先は業種のみを記載しています。',
+    ventureTitle: '創薬・バイオベンチャー支援',
+    ventureLead: '事業計画策定・資金調達を支援したベンチャーのコア技術',
+    tags: ['シングルセル・トランスクリプトーム解析', '他家T細胞がん免疫療法', 'ペプチド模倣化合物ライブラリー', 'Protein degrader', '抗体超迅速スクリーニング', '毛根の再生医療', 'MSC由来培養血液細胞', '遺伝子治療', '脳梗塞の細胞治療'],
+    corpTitle: '企業・アカデミア支援',
+    projects: [
+      { t: '次世代シーケンサーを用いた新規事業企画', c: '国内診断薬メーカー' },
+      { t: 'がん・慢性疾患領域の新規事業戦略', c: '外資系医療保険会社' },
+      { t: '臨床データ基盤による治験患者リクルート促進', c: '国立大学・大手製薬企業' },
+      { t: '「がんゲノム医療」遺伝子検査受託の事業化', c: '国内大手ITメーカー' },
+      { t: '「再生医療」領域の新規事業立案・提携支援', c: '国内大手化学メーカー' },
+      { t: '遠隔聴診器の事業戦略', c: '国内医療機器メーカー' },
+      { t: 'ギャップファンド申請書の作成支援', c: '複数のアカデミア研究者' }
+    ],
+    ceoTitle: '代表',
+    ceoAlt: '代表 三品 聡範',
+    ceoRole: '代表社員・CEO',
+    ceoName: '三品 聡範',
+    ceoSub: 'Toshinori Mishina',
+    ceoBio1: '大阪大学大学院薬学研究科にて再生医療・遺伝子工学等を修めた後、外資系製薬企業の研究開発職、コンサルティングファーム2社を経て独立。',
+    ceoBio2: '主にヘルスケア・ライフサイエンス領域での新規事業プロデュースに加え、創薬・バイオ系スタートアップの事業戦略策定、資金調達、アライアンスを支援。自らも取締役やCxO等としてベンチャー経営に携わる。',
+    timeline: [
+      { y: '2008', text: '大阪大学大学院 薬学研究科 修了\n日本イーライリリー株式会社 （メディカルライティング、メディカルリエゾン）' },
+      { y: '2013', text: 'プライスウォーターハウスクーパース株式会社\n（現 PwCコンサルティング合同会社）ヘルスケア・医薬・ライフサイエンス部門' },
+      { y: '2015', text: 'イーソリューションズ株式会社 ライフサイエンス事業部 事業部長' },
+      { y: '2019', text: 'サイネス合同会社を創業（現任）' },
+      { y: '2020', text: '株式会社タウンズ 社外取締役（現任）\n「TOYAMAくすりシリコンバレー」コンソーシアム 事業戦略責任者（〜2026年3月）' },
+      { y: '2022', text: 'ときわバイオ株式会社 取締役COO（〜2024年3月）' },
+      { y: '2024', text: 'NCメディカルリサーチ株式会社 Contract CFO（現任）\n株式会社ASAGI Labs Business Development（現任）' },
+      { y: '2026', text: 'Orinas Biosciences株式会社を創業、代表取締役CEO（現任）' }
+    ],
+    companyTitle: '会社概要',
+    company: [
+      { k: '社名', v: 'サイネス合同会社（Sciness, LLC.）' },
+      { k: '設立', v: '2020年4月' },
+      { k: '代表', v: '代表社員・CEO　三品 聡範' },
+      { k: '所在地', v: '東京都中央区' },
+      { k: '事業内容', v: 'ヘルスケア・ライフサイエンス領域における新規事業の企画・戦略立案・実行支援、創薬・バイオベンチャーの事業化・資金調達支援、事業シーズの育成・投資' }
+    ],
+    contactTitle: 'お問い合わせ',
+    contactLead: '事業化のご相談、協業のご提案、サービス資料のご請求は、こちらのフォームからお気軽にお寄せください。内容を確認のうえ、ご連絡いたします。',
+    fName: 'お名前（必須）',
+    fOrg: '会社名・ご所属',
+    fMail: 'メールアドレス（必須）',
+    fType: 'お問い合わせ種別',
+    options: ['事業化・資金調達支援のご相談', '新規事業・戦略立案のご相談', '協業・投資のご提案', '資料請求', 'その他'],
+    fBody: 'お問い合わせ内容',
+    privacy: '送信いただいた情報は、お問い合わせへの対応のみに利用します。',
+    submit: '送信する'
+  },
+  en: {
+    navLabel: 'Main menu',
+    nav: ['Services', 'Our Work', 'Leadership', 'Company'],
+    contactBtn: 'Contact',
+    heroTitle: '',
+    heroLead: 'Great research and technology deserve to reach society as sustainable businesses. Sciness builds new ventures in healthcare and life sciences, and partners with drug discovery and biotech startups on business planning, fundraising and strategic alliances.',
+    heroCta: 'Get in touch',
+    numbersLabel: 'Key figures',
+    numbers: [
+      { num: '18', unit: 'years', text: 'In life sciences, spanning pharma, consulting and venture leadership' },
+      { num: '¥800M', unit: '+', text: 'Raised for a startup under his leadership as a board director' },
+      { num: '3', unit: 'companies', text: 'Life science companies he has helped lead as a board member or C-level executive' }
+    ],
+    serviceTitle: 'What we do',
+    serviceLead: 'From identifying promising science to company formation, fundraising and partnerships. Backed by experience in pharma, consulting and venture management, we can step in at any stage of the path to market.',
+    services: [
+      { no: '01', title: 'Commercialization & fundraising\nfor biotech startups', items: ['Business plans and capital strategy', 'Fundraising with VCs and CVCs', 'Alliance and licensing deals with pharma'] },
+      { no: '02', title: 'Strategy for new\nhealthcare businesses', items: ['New business design and market entry', 'Mid-term business planning', 'Proof of concept and business development'] },
+      { no: '03', title: 'Building ventures from\nacademic research', items: ['Gap fund applications', 'Launching and running university spin-outs', 'Industry–academia partnerships'] }
+    ],
+    worksTitle: 'Selected work',
+    worksNote: 'To respect client confidentiality, engagements are described by industry only.',
+    ventureTitle: 'Drug discovery & biotech startups',
+    ventureLead: 'Core technologies of startups we have supported on business planning and fundraising',
+    tags: ['Single-cell transcriptomics', 'Allogeneic T-cell immunotherapy for cancer', 'Peptidomimetic compound libraries', 'Protein degraders', 'Rapid antibody screening', 'Hair follicle regeneration', 'MSC-derived cultured blood cells', 'Gene therapy', 'Cell therapy for stroke'],
+    corpTitle: 'Corporates & academia',
+    projects: [
+      { t: 'New business built on next-generation sequencing', c: 'Japanese diagnostics company' },
+      { t: 'Growth strategy in cancer and chronic disease', c: 'Global health insurer' },
+      { t: 'Faster trial recruitment through a clinical data platform', c: 'National university & major pharma' },
+      { t: 'Launching a genetic testing service for cancer genomic medicine', c: 'Major Japanese IT company' },
+      { t: 'Entering regenerative medicine: strategy and partnering', c: 'Major Japanese chemical company' },
+      { t: 'Business strategy for a remote stethoscope', c: 'Japanese medical device maker' },
+      { t: 'Gap fund applications', c: 'Academic researchers' }
+    ],
+    ceoTitle: 'Leadership',
+    ceoAlt: 'Toshinori Mishina, Founder & CEO',
+    ceoRole: 'Founder & CEO',
+    ceoName: 'Toshinori Mishina',
+    ceoSub: '三品 聡範',
+    ceoBio1: 'After graduate studies in regenerative medicine and genetic engineering at Osaka University’s Graduate School of Pharmaceutical Sciences, he worked in R&D at a global pharmaceutical company and then at two consulting firms before founding his own practice.',
+    ceoBio2: 'His work centers on creating new businesses in healthcare and life sciences, and on helping drug discovery and biotech startups with business strategy, fundraising and partnerships. He also takes on hands-on leadership roles in ventures as a board director and C-level executive.',
+    timeline: [
+      { y: '2008', text: 'M.S., Graduate School of Pharmaceutical Sciences, Osaka University\nEli Lilly Japan K.K. — Medical Writing; Medical Liaison' },
+      { y: '2013', text: 'PricewaterhouseCoopers Co., Ltd. (now PwC Consulting LLC)\nHealthcare, Pharmaceuticals & Life Sciences' },
+      { y: '2015', text: 'eSolutions Co., Ltd. — Head of Life Sciences Division' },
+      { y: '2019', text: 'Founded Sciness, LLC. (present)' },
+      { y: '2020', text: 'Outside Director, TAUNS Laboratories, Inc. (present)\nHead of Business Strategy, TOYAMA Kusuri Silicon Valley Consortium (until March 2026)' },
+      { y: '2022', text: 'Director & COO, Tokiwa-Bio Inc. (until March 2024)' },
+      { y: '2024', text: 'Contract CFO, NC Medical Research Inc. (present)\nBusiness Development, ASAGI Labs Inc. (present)' },
+      { y: '2026', text: 'Founder & CEO, Orinas Biosciences, Inc. (present)' }
+    ],
+    companyTitle: 'Company',
+    company: [
+      { k: 'Name', v: 'Sciness, LLC.' },
+      { k: 'Founded', v: 'April 2020' },
+      { k: 'CEO', v: 'Toshinori Mishina' },
+      { k: 'Location', v: 'Chuo-ku, Tokyo, Japan' },
+      { k: 'Business', v: 'New business development, strategy and execution support in healthcare and life sciences; commercialization and fundraising support for drug discovery and biotech startups; incubation of and investment in early-stage ventures' }
+    ],
+    contactTitle: 'Contact us',
+    contactLead: 'Whether you are exploring commercialization, considering a partnership or would like to learn more about our services, we would be glad to hear from you. We will review your message and get back to you promptly.',
+    fName: 'Name (required)',
+    fOrg: 'Company / Organization',
+    fMail: 'Email (required)',
+    fType: 'Topic',
+    options: ['Commercialization or fundraising support', 'New business or strategy consulting', 'Partnership or investment proposal', 'Request information', 'Other'],
+    fBody: 'Message',
+    privacy: 'We use the information you provide solely to respond to your inquiry.',
+    submit: 'Send message'
+  }
+};
+const NAV_IDS = ['service', 'works', 'ceo', 'company'];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: null };
+  }
+  detectLang() {
+    try {
+      const langs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'ja'];
+      return String(langs[0]).toLowerCase().indexOf('ja') === 0 ? 'ja' : 'en';
+    } catch (e) {
+      return 'ja';
+    }
+  }
+  scrollTo(id) {
+    return (e) => {
+      try {
+        const el = document.getElementById(id);
+        if (el) {
+          if (e && e.preventDefault) e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } catch (err) {}
+    };
+  }
+  renderVals() {
+    const forced = this.props.lang && this.props.lang !== 'auto' ? this.props.lang : null;
+    const lang = this.state.lang || forced || this.detectLang();
+    const t = COPY[lang] || COPY.ja;
+    return {
+      accent: this.props.accent ?? '#14284b',
+      t: t,
+      hasHeroTitle: !!t.heroTitle,
+      isJa: lang === 'ja',
+      isEn: lang === 'en',
+      setJa: () => this.setState({ lang: 'ja' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      goTop: this.scrollTo('top'),
+      goContact: this.scrollTo('contact'),
+      nav: NAV_IDS.map((id, i) => ({ label: t.nav[i], href: '#' + id, go: this.scrollTo(id) }))
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.sciness.co.jp/sitemap.xml
