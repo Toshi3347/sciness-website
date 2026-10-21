@@ -293,7 +293,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid #ffffff;outline-offset
 <h2 style="margin: 0 0 24px; font-family: 'Noto Sans JP', sans-serif; font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; line-height: 1.4; white-space: pre-line">お問い合わせ</h2>
 <p style="margin: 0; font-size: 15px; color: #d2dae6; max-width: 420px">事業化のご相談、協業のご提案、サービス資料のご請求は、こちらのフォームからお気軽にお寄せください。内容を確認のうえ、ご連絡いたします。</p>
 </div>
-<form style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; position: relative;" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST"><input type="hidden" name="_subject" value="【サイネスHP】お問い合わせ"><input type="hidden" name="language" value="ja"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px">
+<form style="flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 24px; position: relative;" id="contact-form" action="https://formspree.io/f/xrpewyld" method="POST"><input type="hidden" name="_subject" value="【サイネスHP】お問い合わせ"><input type="hidden" name="language" value="ja"><input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px">
 <div style="display: flex; flex-wrap: wrap; gap: 24px">
 <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
 <label for="f-name" style="font-size: 13px; color: #d2dae6">お名前（必須）</label>
@@ -346,7 +346,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid #ffffff;outline-offset
   var s=document.getElementById('form-status'),b=document.getElementById('form-submit');
   f.addEventListener('submit',function(e){
     e.preventDefault();
-    if(f.action.indexOf('YOUR_FORM_ID')>-1){s.textContent="送信できませんでした。時間をおいて再度お試しいただくか、メールにてご連絡ください。";return;}
+    if(f.action.indexOf('xrpewyld')>-1){s.textContent="送信できませんでした。時間をおいて再度お試しいただくか、メールにてご連絡ください。";return;}
     b.disabled=true;s.textContent="送信しています…";
     fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
       .then(function(r){if(!r.ok)throw new Error(r.status);f.reset();s.textContent="お問い合わせを受け付けました。内容を確認のうえ、ご連絡いたします。";})
