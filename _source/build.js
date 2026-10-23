@@ -88,8 +88,19 @@ function renderNode($, node, scope) {
 function page(lang) {
   const v = valsFor(lang);
   const t = v.t;
+  const prefix = lang === 'en' ? '../' : '';
   const $ = cheerio.load(body, { decodeEntities: false }, false);
   renderChildren($, $.root()[0], v);
+
+  // Apply the approved logo during every build, including after a canvas refresh.
+  const headerBrand = $('header a[href="#top"]');
+  const footerBrand = $('footer > div > span').filter((_, el) => $(el).text().trim() === 'SCINESS, LLC.');
+  if (headerBrand.length !== 1 || footerBrand.length !== 1) {
+    throw new Error('Expected one header brand and one footer brand in Main.dc.html');
+  }
+  const logo = (width) => `<img src="${prefix}assets/sciness-logo-white.svg" alt="SCINESS, LLC." width="1397" height="315" style="display: block; width: ${width}px; max-width: 100%; height: auto">`;
+  headerBrand.html(logo(178));
+  footerBrand.html(logo(142));
 
   // Photo
   $('img').each((_, img) => {
@@ -134,7 +145,6 @@ function page(lang) {
     ? 'サイネス合同会社は、ヘルスケア・ライフサイエンス領域の新規事業プロデュースと、創薬・バイオ系スタートアップの事業計画、資金調達、アライアンスを支援します。'
     : 'Sciness builds new ventures in healthcare and life sciences and partners with drug discovery and biotech startups on business planning, fundraising and strategic alliances.';
   const url = lang === 'ja' ? SITE + '/' : SITE + '/en/';
-  const prefix = lang === 'en' ? '../' : '';
   const msgs = lang === 'ja'
     ? { sending: '送信しています…', ok: 'お問い合わせを受け付けました。内容を確認のうえ、ご連絡いたします。', ng: '送信できませんでした。時間をおいて再度お試しいただくか、メールにてご連絡ください。' }
     : { sending: 'Sending…', ok: 'Thank you. We have received your message and will be in touch shortly.', ng: 'Sorry, your message could not be sent. Please try again later or contact us by email.' };
@@ -162,11 +172,11 @@ function page(lang) {
 <meta property="og:locale" content="${lang === 'ja' ? 'ja_JP' : 'en_US'}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="${prefix}favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="${prefix}assets/apple-touch-icon.png">
+<link rel="apple-touch-icon" href="${prefix}assets/sciness-apple-touch-icon.png">
 <meta name="theme-color" content="${v.accent}">
 ${autoLang ? `<script>${autoLang}</script>` : ''}
 ${helmet.trim()}
-<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Sciness, LLC.', alternateName: 'サイネス合同会社', url: SITE + '/', logo: SITE + '/assets/apple-touch-icon.png', founder: { '@type': 'Person', name: 'Toshinori Mishina', alternateName: '三品 聡範' }, address: { '@type': 'PostalAddress', addressLocality: 'Chuo-ku', addressRegion: 'Tokyo', addressCountry: 'JP' } })}</script>
+<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@type': 'Organization', name: 'Sciness, LLC.', alternateName: 'サイネス合同会社', url: SITE + '/', logo: SITE + '/assets/sciness-logo.svg', founder: { '@type': 'Person', name: 'Toshinori Mishina', alternateName: '三品 聡範' }, address: { '@type': 'PostalAddress', addressLocality: 'Chuo-ku', addressRegion: 'Tokyo', addressCountry: 'JP' } })}</script>
 </head>
 <body>
 ${$.html().trim()}
