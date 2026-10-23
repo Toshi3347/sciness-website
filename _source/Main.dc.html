@@ -200,7 +200,8 @@ input:focus,select:focus,textarea:focus{outline:2px solid #ffffff;outline-offset
 <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 8px">
 <label for="f-type" style="font-size: 13px; color: #d2dae6">{{t.fType}}</label>
 <select id="f-type" style="background: {{accent}}; border: none; border-bottom: 1px solid #7f8fab; color: #ffffff; padding: 12px 0; font-size: 16px; min-height: 44px; box-sizing: border-box">
-<sc-for list="{{t.options}}" as="o" hint-placeholder-count="5">
+<option value="">{{t.fTypePlaceholder}}</option>
+<sc-for list="{{t.options}}" as="o" hint-placeholder-count="4">
 <option>{{o}}</option>
 </sc-for>
 </select>
@@ -296,7 +297,8 @@ const COPY = {
     fOrg: '会社名・ご所属',
     fMail: 'メールアドレス（必須）',
     fType: 'お問い合わせ種別',
-    options: ['事業化・資金調達支援のご相談', '新規事業・戦略立案のご相談', '協業・投資のご提案', '資料請求', 'その他'],
+    fTypePlaceholder: '選択してください（任意）',
+    options: ['スタートアップ支援のご相談', '新規事業・戦略立案のご相談', '協業のご提案', 'その他'],
     fBody: 'お問い合わせ内容',
     privacy: '送信いただいた情報は、お問い合わせへの対応のみに利用します。',
     submit: '送信する'
@@ -367,7 +369,8 @@ const COPY = {
     fOrg: 'Company / Organization',
     fMail: 'Email (required)',
     fType: 'Topic',
-    options: ['Commercialization or fundraising support', 'New business or strategy consulting', 'Partnership or investment proposal', 'Request information', 'Other'],
+    fTypePlaceholder: 'Please select (optional)',
+    options: ['Startup support inquiry', 'New business and strategy inquiry', 'Collaboration proposal', 'Other'],
     fBody: 'Message',
     privacy: 'We use the information you provide solely to respond to your inquiry.',
     submit: 'Send message'

@@ -126,7 +126,12 @@ function page(lang) {
   $('#f-name').attr('name', 'name').attr('autocomplete', 'name');
   $('#f-org').attr('name', 'organization').attr('autocomplete', 'organization');
   $('#f-mail').attr('name', 'email').attr('autocomplete', 'email');
-  $('#f-type').attr('name', 'topic');
+  // HTML parsing drops the custom sc-for inside select, so build these options directly.
+  const topic = $('#f-type').attr('name', 'topic').empty();
+  topic.append($('<option></option>').attr('value', '').text(t.fTypePlaceholder));
+  t.options.forEach((label) => {
+    topic.append($('<option></option>').attr('value', label).text(label));
+  });
   $('#f-body').attr('name', 'message').attr('required', '');
   form.prepend(
     `<input type="hidden" name="_subject" value="${lang === 'ja' ? '【サイネスHP】お問い合わせ' : '[Sciness website] Inquiry'}">` +
